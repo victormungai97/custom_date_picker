@@ -86,7 +86,7 @@ jobs:
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MAGIC_FITNESS_APP }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_HOSTING_CREDENTIAL_FILE_CONTENT }}'
           projectId: ${{ secrets.FIREBASE_WEB_APPID }}
           channelId: live
 
