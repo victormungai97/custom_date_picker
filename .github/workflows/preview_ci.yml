@@ -42,7 +42,7 @@ jobs:
           flutter pub get
 
       - name: Build application for deployment on website
-        run: flutter build web --web-renderer canvaskit --dart-define="flavor=${ENVIRONMENT}"
+        run: flutter build web --web-renderer canvaskit
 
       - name: Extract branch name
         shell: bash
@@ -53,7 +53,7 @@ jobs:
         uses: FirebaseExtended/action-hosting-deploy@v0
         with:
           repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_MAGIC_FITNESS_APP }}'
+          firebaseServiceAccount: '${{ secrets.FIREBASE_HOSTING_CREDENTIAL_FILE_CONTENT }}'
           expires: 30d  # length of time preview channel should remain active after the last deploy
           projectId: ${{ secrets.FIREBASE_WEB_APPID }}
           channelId: 'pr-${{ github.event.number }}-${{ steps.extract_branch.outputs.branch }}'
