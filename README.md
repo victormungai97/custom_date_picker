@@ -18,7 +18,7 @@ samples, guidance on mobile development, and a full API reference.
 ---
 
 
-# Magic Fitness App
+# Custom Date Picker App
 **_A custom date picker application built in Flutter with preset option._** 
 
 Here, a user can select a picture from a calendar with an additional option of choosing a preset option. 
@@ -67,7 +67,6 @@ This layer contains that provide the interface between the end user and applicat
 The code found here renders the application and handles user input & actions and application lifecycle events.
 Presentation is further broken down into the following directories:
 + Views / Screens
-+ Widgets
 + Navigation
 
 These folders represent various aspects e.g. the screens a user sees and uses,
@@ -143,8 +142,12 @@ Additionally, this layer also provides a blueprint/framework with which to struc
 The data layer can be split into the following parts:
 * Extensions
 * Constants
+* Keys
 
-<h5>(a) Constants</h5>
+<h5>(a) Keys</h5>
+These unique identifiers of widgets which are particularly useful in testing
+
+<h5>(b) Constants</h5>
 
 This consists of various values that remain unchanged throughout the lifetime of the app. 
 They are in turn exported to this folder in keeping with the [`DRY` (*Don't Repeat Yourself*)](https://www.makeuseof.com/tag/basic-programming-principles/)
@@ -155,7 +158,7 @@ These constants are further arranged in `strings`, `colors` and `themes`, among 
 This constants provides an additional benefit of allowing easier refactoring if any value needs 
 to be changed or, in the case of strings, facilitates translation to multiple languages.
 
-<h5>(b) Extensions</h5>
+<h5>(c) Extensions</h5>
 
 Extension methods are found in this folder. These methods add functionality to existing libraries.
 
@@ -200,3 +203,6 @@ A number of external third-party packages have been used in this project to prov
 
 + [**_intl_**](https://pub.dev/packages/intl)
   + Used for date formatting.
+
++ [**_go_route_**](https://pub.dev/packages/go_router)
+  + Package that makes navigation particularly with regards to functionality like deep/app link and web browser URL easy.
