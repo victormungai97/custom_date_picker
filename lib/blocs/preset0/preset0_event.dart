@@ -11,10 +11,8 @@ class Preset0Event with _$Preset0Event {
 
   /// Event to set a no preset based date
   const factory Preset0Event.set({required String pickedDate}) =
-  _Preset0EventSet;
+      _Preset0EventSet;
 
   /// Event to remove a no preset based date
-  const factory Preset0Event.remove() =
-  _Preset0EventRemoved;
-
+  const factory Preset0Event.remove() = _Preset0EventRemoved;
 }

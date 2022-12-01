@@ -11,10 +11,8 @@ class Preset4Event with _$Preset4Event {
 
   /// Event to set a 4-preset based date
   const factory Preset4Event.set({required String pickedDate}) =
-  _Preset4EventSet;
+      _Preset4EventSet;
 
   /// Event to remove a 4-preset based date
-  const factory Preset4Event.remove() =
-  _Preset4EventRemoved;
-
+  const factory Preset4Event.remove() = _Preset4EventRemoved;
 }

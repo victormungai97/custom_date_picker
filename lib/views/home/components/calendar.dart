@@ -28,7 +28,9 @@ class CalendarDialog extends HookWidget {
     final now = DateTime.now();
 
     // Split a list into small portions
-    final partitions = presets != null && presets!.isNotEmpty ? partition<Map<String, num>>(presets!, 2).toList(growable: false) : <String>[];
+    final partitions = presets != null && presets!.isNotEmpty
+        ? partition<Map<String, num>>(presets!, 2).toList(growable: false)
+        : <String>[];
     final width = MediaQuery.of(context).size.width;
 
     final highlightedButton = useState<String?>(null);
@@ -47,63 +49,84 @@ class CalendarDialog extends HookWidget {
               children: <Widget>[
                 if (partitions.isNotEmpty)
                   ...partitions.map(
-                        (l) => SizedBox(
-                          width: width,
-                          child: Row(
-                            children: (l as List).map((el) {
-                              final e = el as Map<String, int>;
-                              final selected = highlightedButton.value == e.keys.first;
-                              return Expanded(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(8),
-                                  child: ElevatedButton(
-                                    style: ElevatedButton.styleFrom(
-                                      elevation: 0,
-                                      fixedSize: const Size(174, 40),
-                                      backgroundColor: !selected ? AppColors.bgColor : AppColors.logoColor,
-                                      shape: const RoundedRectangleBorder(
-                                        borderRadius: BorderRadius.all(Radius.circular(4),),
+                    (l) => SizedBox(
+                      width: width,
+                      child: Row(
+                        children: (l as List).map(
+                          (el) {
+                            final e = el as Map<String, int>;
+                            final selected =
+                                highlightedButton.value == e.keys.first;
+                            return Expanded(
+                              child: Padding(
+                                padding: const EdgeInsets.all(8),
+                                child: ElevatedButton(
+                                  style: ElevatedButton.styleFrom(
+                                    elevation: 0,
+                                    fixedSize: const Size(174, 40),
+                                    backgroundColor: !selected
+                                        ? AppColors.bgColor
+                                        : AppColors.logoColor,
+                                    shape: const RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(4),
                                       ),
-                                      foregroundColor: selected ? AppColors.textColor : AppColors.logoColor,
                                     ),
-                                    onPressed: () {
-                                      final interval = e.values.first;
-                                      selectedDay.value = now.add(Duration(days: interval),);
-                                      highlightedButton.value = e.keys.first;
-                                    },
-                                    child: Text(
-                                      e.keys.first,
-                                      style: const TextStyle(fontWeight: FontWeight.normal, fontSize: 16,),
+                                    foregroundColor: selected
+                                        ? AppColors.textColor
+                                        : AppColors.logoColor,
+                                  ),
+                                  onPressed: () {
+                                    final interval = e.values.first;
+                                    selectedDay.value = now.add(
+                                      Duration(days: interval),
+                                    );
+                                    highlightedButton.value = e.keys.first;
+                                  },
+                                  child: Text(
+                                    e.keys.first,
+                                    style: const TextStyle(
+                                      fontWeight: FontWeight.normal,
+                                      fontSize: 16,
                                     ),
                                   ),
                                 ),
-                              );
-                            },).toList(),
-                          ),
-                        ),
+                              ),
+                            );
+                          },
+                        ).toList(),
+                      ),
+                    ),
                   ),
                 TableCalendar<dynamic>(
                   calendarBuilders: CalendarBuilders(
                     selectedBuilder: (_, DateTime date, DateTime focusedDay) {
                       return Center(
-                          child: Container(
-                            padding: const EdgeInsets.all(9.5),
-                            decoration: const BoxDecoration(
-                                color: AppColors.logoColor,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Text(
-                                date.day.toString(),
-                              style: const TextStyle(color: AppColors.textColor, fontSize: 14,),
+                        child: Container(
+                          padding: const EdgeInsets.all(9.5),
+                          decoration: const BoxDecoration(
+                            color: AppColors.logoColor,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Text(
+                            date.day.toString(),
+                            style: const TextStyle(
+                              color: AppColors.textColor,
+                              fontSize: 14,
                             ),
                           ),
+                        ),
                       );
                     },
                     todayBuilder: (_, DateTime date, DateTime focusedDay) {
                       return Center(
-                          child: Text(date.day.toString(), style: const TextStyle(color: AppColors.logoColor),),);
+                        child: Text(
+                          date.day.toString(),
+                          style: const TextStyle(color: AppColors.logoColor),
+                        ),
+                      );
                     },
-                      ),
+                  ),
                   firstDay: DateTime.utc(1970),
                   lastDay: DateTime.utc(2100, 12, 31),
                   calendarFormat: calendarFormat.value,
@@ -118,12 +141,28 @@ class CalendarDialog extends HookWidget {
                   },
                   startingDayOfWeek: StartingDayOfWeek.monday,
                   focusedDay: focusedDay.value,
-                  availableCalendarFormats: const {CalendarFormat.month : 'Month',},
+                  availableCalendarFormats: const {
+                    CalendarFormat.month: 'Month',
+                  },
                   onFormatChanged: (value) => calendarFormat.value = value,
                 ),
                 Padding(
                   padding: const EdgeInsets.all(16),
-                  child: width < 576 ? CalendarButtonsSmall(selectedDay: selectedDay.value != null ? DateFormat('d MMM yyyy').format(selectedDay.value!) : null, onSuccessfulPicking: _onDatePicked,) : CalendarButtonsLarge(selectedDay: selectedDay.value != null ? DateFormat('d MMM yyyy').format(selectedDay.value!) : null, onSuccessfulPicking: _onDatePicked,),
+                  child: width < 576
+                      ? CalendarButtonsSmall(
+                          selectedDay: selectedDay.value != null
+                              ? DateFormat('d MMM yyyy')
+                                  .format(selectedDay.value!)
+                              : null,
+                          onSuccessfulPicking: _onDatePicked,
+                        )
+                      : CalendarButtonsLarge(
+                          selectedDay: selectedDay.value != null
+                              ? DateFormat('d MMM yyyy')
+                                  .format(selectedDay.value!)
+                              : null,
+                          onSuccessfulPicking: _onDatePicked,
+                        ),
                 ),
               ],
             ),

@@ -11,10 +11,8 @@ class Preset6Event with _$Preset6Event {
 
   /// Event to set a 6-preset based date
   const factory Preset6Event.set({required String pickedDate}) =
-  _Preset6EventSet;
+      _Preset6EventSet;
 
   /// Event to remove a 6-preset based date
-  const factory Preset6Event.remove() =
-  _Preset6EventRemoved;
-
+  const factory Preset6Event.remove() = _Preset6EventRemoved;
 }

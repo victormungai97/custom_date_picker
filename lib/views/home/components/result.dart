@@ -9,7 +9,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 /// Widget to show a selected date
 class ResultWidget extends StatelessWidget {
   /// Constructor for ``[ResultWidget]``
-  const ResultWidget({super.key, required this.selectedDate, required this.variant,});
+  const ResultWidget({
+    super.key,
+    required this.selectedDate,
+    required this.variant,
+  });
 
   /// Selected Date
   final String selectedDate;
@@ -29,9 +33,33 @@ class ResultWidget extends StatelessWidget {
       child: Center(
         child: Row(
           children: [
-            const Expanded(child: Icon(Icons.date_range, color: AppColors.logoColor, size: 18,),),
-            Expanded(flex: 2, child: Center(child: Text(selectedDate, style: const TextStyle(color: AppColors.logoColor, fontSize: 16),),), ),
-            Expanded(child: IconButton(onPressed: () => _delete(context), icon: const Icon(Icons.close_sharp, color: AppColors.logoColor, size: 18,),),),
+            const Expanded(
+              child: Icon(
+                Icons.date_range,
+                color: AppColors.logoColor,
+                size: 18,
+              ),
+            ),
+            Expanded(
+              flex: 2,
+              child: Center(
+                child: Text(
+                  selectedDate,
+                  style:
+                      const TextStyle(color: AppColors.logoColor, fontSize: 16),
+                ),
+              ),
+            ),
+            Expanded(
+              child: IconButton(
+                onPressed: () => _delete(context),
+                icon: const Icon(
+                  Icons.close_sharp,
+                  color: AppColors.logoColor,
+                  size: 18,
+                ),
+              ),
+            ),
           ],
         ),
       ),
@@ -40,7 +68,6 @@ class ResultWidget extends StatelessWidget {
 
   void _delete(BuildContext context) {
     switch (variant) {
-
       case Variant.none:
         return;
       case Variant.preset_0:

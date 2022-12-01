@@ -13,7 +13,5 @@ class Preset0State with _$Preset0State {
   const factory Preset0State.load() = Preset0Loading;
 
   /// Workouts obtained
-  const factory Preset0State.set(
-      {required String date}) = Preset0SetSuccess;
-
+  const factory Preset0State.set({required String date}) = Preset0SetSuccess;
 }

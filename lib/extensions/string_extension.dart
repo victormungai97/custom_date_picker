@@ -5,5 +5,4 @@
 extension StringExtensions on String? {
   /// Checks that the given string is not null and is not empty
   bool get exists => this != null && this!.isNotEmpty;
-
 }

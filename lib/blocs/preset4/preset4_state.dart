@@ -13,6 +13,5 @@ class Preset4State with _$Preset4State {
   const factory Preset4State.load() = Preset4Loading;
 
   /// Date saved
-  const factory Preset4State.set(
-      {required String date}) = Preset4SetSuccess;
+  const factory Preset4State.set({required String date}) = Preset4SetSuccess;
 }

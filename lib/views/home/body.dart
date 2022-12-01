@@ -19,7 +19,10 @@ class _Body extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(Labels.title, style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),),
+              const Text(
+                Labels.title,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+              ),
               const SizedBox(height: 25),
               HomeButton(
                 text: Labels.presets_0,
@@ -28,8 +31,19 @@ class _Body extends StatelessWidget {
               ),
               const SizedBox(height: 12.5),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16,),
-                child: preset0State.whenOrNull(initial: SizedBox.shrink, load: () => const Center(child: Center(child: CircularProgressIndicator())), set: (selectedDate) => ResultWidget(selectedDate: selectedDate, variant: Variant.preset_0,),),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 8,
+                  horizontal: 16,
+                ),
+                child: preset0State.whenOrNull(
+                  initial: SizedBox.shrink,
+                  load: () => const Center(
+                      child: Center(child: CircularProgressIndicator())),
+                  set: (selectedDate) => ResultWidget(
+                    selectedDate: selectedDate,
+                    variant: Variant.preset_0,
+                  ),
+                ),
               ),
               const SizedBox(height: 12.5),
               HomeButton(
@@ -39,8 +53,19 @@ class _Body extends StatelessWidget {
               ),
               const SizedBox(height: 12.5),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16,),
-                child: preset4State.whenOrNull(initial: SizedBox.shrink, load: () => const Center(child: Center(child: CircularProgressIndicator())), set: (selectedDate) => ResultWidget(selectedDate: selectedDate, variant: Variant.preset_4,),),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 8,
+                  horizontal: 16,
+                ),
+                child: preset4State.whenOrNull(
+                  initial: SizedBox.shrink,
+                  load: () => const Center(
+                      child: Center(child: CircularProgressIndicator())),
+                  set: (selectedDate) => ResultWidget(
+                    selectedDate: selectedDate,
+                    variant: Variant.preset_4,
+                  ),
+                ),
               ),
               const SizedBox(height: 12.5),
               HomeButton(
@@ -50,8 +75,18 @@ class _Body extends StatelessWidget {
               ),
               const SizedBox(height: 12.5),
               Padding(
-                padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 16,),
-                child: preset6State.whenOrNull(initial: SizedBox.shrink, load: () => const Center(child: CircularProgressIndicator()), set: (selectedDate) => ResultWidget(selectedDate: selectedDate, variant: Variant.preset_6,),),
+                padding: const EdgeInsets.symmetric(
+                  vertical: 8,
+                  horizontal: 16,
+                ),
+                child: preset6State.whenOrNull(
+                  initial: SizedBox.shrink,
+                  load: () => const Center(child: CircularProgressIndicator()),
+                  set: (selectedDate) => ResultWidget(
+                    selectedDate: selectedDate,
+                    variant: Variant.preset_6,
+                  ),
+                ),
               ),
             ],
           ),
@@ -61,7 +96,6 @@ class _Body extends StatelessWidget {
   }
 
   int _getDifferenceBtnDays(String source, String target) {
-
     final daysOfWeek = {
       'Monday': 1,
       'Tuesday': 2,
@@ -82,25 +116,36 @@ class _Body extends StatelessWidget {
 
   void _openCalendar(BuildContext context, Variant variant) {
     final today = DateFormat('EEEE').format(DateTime.now());
-  context.read<VariantsCubit>().determineVariant(variant);
-  final presets = <Map<String, int>>[];
-  switch (variant) {
-    
-    case Variant.none:
-    case Variant.preset_0:
-      break;
-    case Variant.preset_4:
-      presets.addAll(<Map<String, int>>[
-        {Labels.unEnding: 0},
-        {Labels.after_15: 15}, {Labels.after_30: 30}, {Labels.after_60: 60}, ]);
-      break;
-    case Variant.preset_6:
-      presets.addAll(<Map<String, int>>[
-          {Labels.yesterday: -1}, {Labels.today: 0}, {Labels.tomorrow: 1},
-        {Labels.saturday: _getDifferenceBtnDays(today, 'Saturday')}, {Labels.sunday: _getDifferenceBtnDays(today, 'Sunday')}, {Labels.tuesday: _getDifferenceBtnDays(today, 'Tuesday')},
+    context.read<VariantsCubit>().determineVariant(variant);
+    final presets = <Map<String, int>>[];
+    switch (variant) {
+      case Variant.none:
+      case Variant.preset_0:
+        break;
+      case Variant.preset_4:
+        presets.addAll(<Map<String, int>>[
+          {Labels.unEnding: 0},
+          {Labels.after_15: 15},
+          {Labels.after_30: 30},
+          {Labels.after_60: 60},
         ]);
-      break;
-  }
-  showDialog<void>(context: context, builder: (_) => CalendarDialog(presets: presets,),);
+        break;
+      case Variant.preset_6:
+        presets.addAll(<Map<String, int>>[
+          {Labels.yesterday: -1},
+          {Labels.today: 0},
+          {Labels.tomorrow: 1},
+          {Labels.saturday: _getDifferenceBtnDays(today, 'Saturday')},
+          {Labels.sunday: _getDifferenceBtnDays(today, 'Sunday')},
+          {Labels.tuesday: _getDifferenceBtnDays(today, 'Tuesday')},
+        ]);
+        break;
+    }
+    showDialog<void>(
+      context: context,
+      builder: (_) => CalendarDialog(
+        presets: presets,
+      ),
+    );
   }
 }

@@ -9,7 +9,11 @@ import 'package:flutter/material.dart';
 
 class CalendarButtonsLarge extends StatelessWidget {
   /// Constructor for ``[CalendarButtonsLarge]``
-  const CalendarButtonsLarge({super.key, required this.selectedDay, required this.onSuccessfulPicking,});
+  const CalendarButtonsLarge({
+    super.key,
+    required this.selectedDay,
+    required this.onSuccessfulPicking,
+  });
 
   /// Date picked from calendar
   final String? selectedDay;
@@ -25,7 +29,9 @@ class CalendarButtonsLarge extends StatelessWidget {
           flex: 2,
           child: ListTile(
             leading: const Icon(Icons.date_range, color: AppColors.iconColor),
-            title: Text(selectedDay.exists ? selectedDay! : Messages.selectedDateMissing,),
+            title: Text(
+              selectedDay.exists ? selectedDay! : Messages.selectedDateMissing,
+            ),
           ),
         ),
         if (selectedDay.exists)
@@ -51,7 +57,9 @@ class CalendarButtonsLarge extends StatelessWidget {
                 Expanded(
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      elevation: 0, fixedSize: const Size(73, 40),),
+                      elevation: 0,
+                      fixedSize: const Size(73, 40),
+                    ),
                     onPressed: () => onSuccessfulPicking(context, selectedDay),
                     child: const Text(Labels.save),
                   ),

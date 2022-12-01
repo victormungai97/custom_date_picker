@@ -13,6 +13,5 @@ class Preset6State with _$Preset6State {
   const factory Preset6State.load() = Preset6Loading;
 
   /// Date saved
-  const factory Preset6State.set(
-      {required String date}) = Preset6SetSuccess;
+  const factory Preset6State.set({required String date}) = Preset6SetSuccess;
 }
