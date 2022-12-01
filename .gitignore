@@ -79,31 +79,23 @@
 web/debug/
 
 # App signing related
-nywele_nyumbani_key.jks
 **.jks
-**/android/nywele_nyumbani_key.properties
-**/android/nywele_nyumbani_debug_key.properties
 
 # API Keys
 web/js/keys.js
 android/app/src/main/res/values/keys.xml
 
 # Encryption keys
-keys/
 *.pem
 
 # Passwords
 *.pwd
 
 # Private file
-lib/private.dart
 *.env
 
 # Sample documents
 *.pdf
-
-# Docker compose
-docker-compose.yml
 
 # Never save service account json files
 **/*Key.json
