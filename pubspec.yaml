@@ -52,7 +52,7 @@ dev_dependencies:
 
   freezed: ^2.3.0
   json_serializable: ^6.5.4
-  path: ^1.8.2
+  mockito: ^5.3.2
 
   # The "very_good_analysis" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is

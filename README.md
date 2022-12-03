@@ -202,8 +202,8 @@ A number of external third-party packages have been used in this project to prov
 + [**_build_runner_**](https://pub.dev/packages/build_runner)
   + This package provides a concrete way of generating files using Dart code, outside of tools like pub.
 
-+ [**_path_**](https://pub.dev/packages/path)
-  + A cross-platform path manipulation library for Dart with common operations for manipulating paths: joining, splitting, normalizing, etc.
++ [**_mockito_**](https://pub.dev/packages/mockito)
+  + Facilitates the creation of mocks and stubs of classes and function used in code during unit and widget testing.
 
 + [**_quiver_**](https://pub.dev/packages/quiver)
   + Has a a set of utility libraries for Dart one of which is used for partitioning preset options into pairs for visualization in UI.
