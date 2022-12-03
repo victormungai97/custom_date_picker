@@ -35,6 +35,5 @@ void main() {
       expect(find.byKey(const ValueKey(WidgetKeys.homePage)), findsOneWidget);
       expect(find.text(Labels.title), findsOneWidget);
     });
-
   });
 }
