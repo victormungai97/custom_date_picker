@@ -2,7 +2,6 @@
 
 part of 'home.dart';
 
-//ignore: must_be_immutable
 class _Body extends StatelessWidget {
   const _Body({super.key});
 
@@ -19,9 +18,9 @@ class _Body extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
+              Text(
                 Labels.title,
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
+                style: Theme.of(context).textTheme.bodyText1,
               ),
               const SizedBox(height: 25),
               HomeButton(
@@ -36,9 +35,10 @@ class _Body extends StatelessWidget {
                   horizontal: 16,
                 ),
                 child: preset0State.whenOrNull(
-                  initial: SizedBox.shrink,
+                  initial: () => const SizedBox(height: 50),
                   load: () => const Center(
-                      child: Center(child: CircularProgressIndicator())),
+                    child: Center(child: CircularProgressIndicator()),
+                  ),
                   set: (selectedDate) => ResultWidget(
                     selectedDate: selectedDate,
                     variant: Variant.preset_0,
@@ -58,9 +58,10 @@ class _Body extends StatelessWidget {
                   horizontal: 16,
                 ),
                 child: preset4State.whenOrNull(
-                  initial: SizedBox.shrink,
+                  initial: () => const SizedBox(height: 50),
                   load: () => const Center(
-                      child: Center(child: CircularProgressIndicator())),
+                    child: Center(child: CircularProgressIndicator()),
+                  ),
                   set: (selectedDate) => ResultWidget(
                     selectedDate: selectedDate,
                     variant: Variant.preset_4,
@@ -80,7 +81,7 @@ class _Body extends StatelessWidget {
                   horizontal: 16,
                 ),
                 child: preset6State.whenOrNull(
-                  initial: SizedBox.shrink,
+                  initial: () => const SizedBox(height: 50),
                   load: () => const Center(child: CircularProgressIndicator()),
                   set: (selectedDate) => ResultWidget(
                     selectedDate: selectedDate,
@@ -95,57 +96,41 @@ class _Body extends StatelessWidget {
     );
   }
 
-  int _getDifferenceBtnDays(String source, String target) {
-    final daysOfWeek = {
-      'Monday': 1,
-      'Tuesday': 2,
-      'Wednesday': 3,
-      'Thursday': 4,
-      'Friday': 5,
-      'Saturday': 6,
-      'Sunday': 7,
-    };
-
-    final current = daysOfWeek.containsKey(source) ? daysOfWeek[source] : 0;
-    final dst = daysOfWeek.containsKey(target) ? daysOfWeek[target] : 0;
-
-    final difference = current! - dst!;
-    if (difference > 0) return difference;
-    return 7 + difference;
-  }
-
   void _openCalendar(BuildContext context, Variant variant) {
-    final today = DateFormat('EEEE').format(DateTime.now());
     context.read<VariantsCubit>().determineVariant(variant);
-    final presets = <Map<String, int>>[];
     switch (variant) {
       case Variant.none:
+        break;
       case Variant.preset_0:
+        final state = context.read<Preset0Bloc>().state;
+        if (state is Preset0SetSuccess) {
+          context.read<SelectedDayCubit>().updateDay(
+                DateFormat('d MMM yyyy').parse(state.date),
+              );
+        }
         break;
       case Variant.preset_4:
-        presets.addAll(<Map<String, int>>[
-          {Labels.unEnding: 0},
-          {Labels.after_15: 15},
-          {Labels.after_30: 30},
-          {Labels.after_60: 60},
-        ]);
+        final state = context.read<Preset4Bloc>().state;
+        if (state is Preset4SetSuccess) {
+          context.read<SelectedDayCubit>().updateDay(
+                DateFormat('d MMM yyyy').parse(state.date),
+              );
+        }
         break;
       case Variant.preset_6:
-        presets.addAll(<Map<String, int>>[
-          {Labels.yesterday: -1},
-          {Labels.today: 0},
-          {Labels.tomorrow: 1},
-          {Labels.saturday: _getDifferenceBtnDays(today, 'Saturday')},
-          {Labels.sunday: _getDifferenceBtnDays(today, 'Sunday')},
-          {Labels.tuesday: _getDifferenceBtnDays(today, 'Tuesday')},
-        ]);
+        final state = context.read<Preset6Bloc>().state;
+        if (state is Preset6SetSuccess) {
+          context.read<SelectedDayCubit>().updateDay(
+                DateFormat('d MMM yyyy').parse(state.date),
+              );
+        }
         break;
     }
+    context.read<PresetsCubit>().setPresets(variant);
     showDialog<void>(
       context: context,
-      builder: (_) => CalendarDialog(
-        presets: presets,
-      ),
-    );
+      builder: (_) => const CalendarDialog(),
+      barrierDismissible: !kDebugMode,
+    ).then((value) => context.read<SelectedDayCubit>().reset());
   }
 }

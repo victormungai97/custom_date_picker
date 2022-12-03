@@ -67,10 +67,8 @@ This layer contains that provide the interface between the end user and applicat
 The code found here renders the application and handles user input & actions and application lifecycle events.
 Presentation is further broken down into the following directories:
 + Views / Screens
-+ Navigation
 
-These folders represent various aspects e.g. the screens a user sees and uses,
-supporting widgets/components and the navigation layer for moving from screen to screen.
+These folders represent various aspects e.g. the screens a user sees and uses and supporting widgets/components
 
 <h5>(a) Views</h5>
 
@@ -89,12 +87,6 @@ allow the constituent parts to be visualized as a single file rather than multip
 `{Page_name}` represents the specified page e.g. login, `body` has the actual *screen* widget and 
 `components` is a directory consisting of _constituent_ widgets that have specialized functions and 
 are included in the main screen widget.
-
-<h5>(b) Navigation</h5>
-
-This directory contains the code that facilitates movement between and redirection to different screens.
-It does this by utilizing the [`go_router`](https://gorouter.dev/) package. Use of the `part of directive`
-is employed to allow the code to be processed as one file.
 
 _**x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x-x**_
 
@@ -174,10 +166,6 @@ A number of external third-party packages have been used in this project to prov
   + These added rules help particularly in _enforcing documentation_ among other scenarios.
   + The lint set provided by the package is  activated in the `analysis_options.yaml` file located at the root of your package.
 
-+ [_**hive**_](https://pub.dev/packages/hive) and [_**hive_generator**_](https://pub.dev/packages/hive_generator)
-  + Is blazing fast and lightweight key-value database that is written in pure Dart.
-  + Used in-app for persistent storage of workouts.
-
 + [**_bloc_**](https://pub.dev/packages/bloc):
   + Package that helps to implement the __Business Logic Component__ (*BLOC*) design pattern for separation of code.
   + Partners with **_freezed_** in generation of __events__ (*actions emanating from UI*) and **states** (_data sent from logic_).
@@ -204,5 +192,18 @@ A number of external third-party packages have been used in this project to prov
 + [**_intl_**](https://pub.dev/packages/intl)
   + Used for date formatting.
 
-+ [**_go_route_**](https://pub.dev/packages/go_router)
-  + Package that makes navigation particularly with regards to functionality like deep/app link and web browser URL easy.
++ [**_table_calendar_**](https://pub.dev/packages/table_calendar)
+  + Provides a highly customizable, feature-packed calendar widget used for date picking.
+
++ [**_flutter_hooks_**](https://pub.dev/packages/flutter_hooks)
+  + Is a Flutter implementation of `hooks` from React and is useful to provide to abstract away StatefulWidget functionality like `initState` and `dispose` in a StatelessWidget-like Widget.
+  + This has a net positive of enhancing code **readability** and **reusability** while removing unnecessary boilerplate.
+
++ [**_build_runner_**](https://pub.dev/packages/build_runner)
+  + This package provides a concrete way of generating files using Dart code, outside of tools like pub.
+
++ [**_mockito_**](https://pub.dev/packages/mockito)
+  + Facilitates the creation of mocks and stubs of classes and function used in code during unit and widget testing.
+
++ [**_quiver_**](https://pub.dev/packages/quiver)
+  + Has a a set of utility libraries for Dart one of which is used for partitioning preset options into pairs for visualization in UI.

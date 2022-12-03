@@ -1,6 +1,5 @@
 // lib/constants/src/colors.dart
 
-import 'package:custom_date_picker/extensions/extensions.dart';
 import 'package:flutter/material.dart';
 
 /// Define the various colors used in the app
@@ -33,4 +32,7 @@ class AppColors {
 
   /// Default color for texts
   static const textColor = Color(0xFFFFFFFF);
+
+  /// Color for titles
+  static const titleColor = Color(0xff323238);
 }

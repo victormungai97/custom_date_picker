@@ -107,3 +107,6 @@ android/app/src/main/res/values/keys.xml
 # Hide reports generated from test coverage
 **/coverage/
 **/lcov.info
+
+# Cached files and folders
+.cache/

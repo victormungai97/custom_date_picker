@@ -1,4 +1,4 @@
-// lib/blocs/variants_cubit.dart
+// lib/cubits/variants_cubit.dart
 
 import 'package:bloc/bloc.dart';
 
