@@ -9,10 +9,12 @@ name: Flutter Build and Deploy Application Preview
 
 on:
   # NB: This event will only trigger when not on branches specified in `branches-ignore`
+  # and when files other than those in `paths-ignore` are changed / edited.
   push:
     branches-ignore:
       - "main"
       - "master"
+    paths-ignore: [ '**/README.md' ]
 
   workflow_dispatch:
 

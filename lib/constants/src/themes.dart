@@ -6,8 +6,8 @@ import 'package:flutter/material.dart';
 /// Define the various themes used in the app
 
 class AppThemes {
-  /// Theme for light mode
-  static final ThemeData lightTheme = ThemeData(
+  /// Theme for the application
+  static final ThemeData appTheme = ThemeData(
     appBarTheme: const AppBarTheme(
       iconTheme: IconThemeData(color: AppColors.iconColor),
     ),
@@ -20,11 +20,7 @@ class AppThemes {
     canvasColor: AppColors.canvasColor,
     brightness: Brightness.light,
     textTheme: const TextTheme(
-      bodyText1: TextStyle(
-        color: Colors.black,
-        fontSize: 18,
-        fontFamily: 'Roboto',
-      ),
+      bodyText1: TextStyle(color: AppColors.titleColor, fontFamily: 'Roboto', fontWeight: FontWeight.w500, fontSize: 18),
       bodyText2: TextStyle(
         color: Colors.black,
         fontSize: 16,

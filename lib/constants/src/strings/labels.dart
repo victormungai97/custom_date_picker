@@ -5,6 +5,9 @@ part of 'strings.dart';
 /// Application widget labels
 
 class Labels {
+  /// Application name
+  static const appName = 'Custom Date Picker';
+
   /// Title
   static const title = 'Calendar widgets';
 

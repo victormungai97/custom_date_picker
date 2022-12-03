@@ -46,7 +46,7 @@ class ResultWidget extends StatelessWidget {
                 child: Text(
                   selectedDate,
                   style:
-                      const TextStyle(color: AppColors.logoColor, fontSize: 16),
+                      const TextStyle(color: AppColors.logoColor, fontSize: 16,),
                 ),
               ),
             ),
