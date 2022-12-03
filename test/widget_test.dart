@@ -28,6 +28,7 @@ void main() {
       );
       HydratedBloc.storage = storage;
     });
+/*
 
     tearDown(() async {
       try {
@@ -38,6 +39,7 @@ void main() {
         await HydratedStorage.hive.deleteFromDisk();
       } catch (_) {debugPrint('$_');}
     });
+*/
 
     testWidgets('Application smoke test', (WidgetTester tester) async {
       // Build our app and trigger a frame.
