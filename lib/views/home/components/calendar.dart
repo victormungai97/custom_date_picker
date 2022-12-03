@@ -30,78 +30,95 @@ class CalendarDialog extends HookWidget {
       ),
       child: SafeArea(
         child: Container(
-          height: presets != null && presets.isNotEmpty ? presets.length <= 4 ? 570 : 630 : 435,
+          height: presets != null && presets.isNotEmpty
+              ? presets.length <= 4
+                  ? 570
+                  : 630
+              : 435,
           padding: const EdgeInsets.all(12),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               if (presets != null && presets.isNotEmpty)
-                Expanded(flex: presets.length <= 4 ? 2 : 3,child: const PresetsWidget(),),
+                Expanded(
+                  flex: presets.length <= 4 ? 2 : 3,
+                  child: const PresetsWidget(),
+                ),
               Expanded(
                 flex: (presets?.length ?? 0) <= 4 ? 5 : 6,
-                child:   Scrollbar(
+                child: Scrollbar(
                   controller: scrollController,
-thumbVisibility: true,
+                  thumbVisibility: true,
                   radius: const Radius.circular(50),
                   child: SingleChildScrollView(
                     controller: scrollController,
-                  child: TableCalendar<dynamic>(
-                    headerStyle: HeaderStyle(
-                      titleCentered: true,
-                      formatButtonVisible: false,
-                      leftChevronIcon: const Icon(Icons.arrow_left),
-                      leftChevronMargin: const EdgeInsets.only(left: 8),
-                      leftChevronPadding: EdgeInsets.zero,
-                      rightChevronIcon: const Icon(Icons.arrow_right),
-                      rightChevronMargin: const EdgeInsets.only(right: 8),
-                      rightChevronPadding: const EdgeInsets.symmetric(vertical: 12,),
-                      titleTextStyle: Theme.of(context).textTheme.bodyText1!,
-                    ),
-                    calendarBuilders: CalendarBuilders(
-                      selectedBuilder: (_, DateTime date, DateTime focusedDay) {
-                        return Center(
-                          child: Container(
-                            padding: const EdgeInsets.all(9.5),
-                            decoration: const BoxDecoration(
-                              color: AppColors.logoColor,
-                              shape: BoxShape.circle,
-                            ),
-                            child: Text(
-                              date.day.toString(),
-                              style: const TextStyle(
-                                color: AppColors.textColor,
-                                fontSize: 14,
+                    child: TableCalendar<dynamic>(
+                      headerStyle: HeaderStyle(
+                        titleCentered: true,
+                        formatButtonVisible: false,
+                        leftChevronIcon: const Icon(Icons.arrow_left),
+                        leftChevronMargin: const EdgeInsets.only(left: 8),
+                        leftChevronPadding: EdgeInsets.zero,
+                        rightChevronIcon: const Icon(Icons.arrow_right),
+                        rightChevronMargin: const EdgeInsets.only(right: 8),
+                        rightChevronPadding: const EdgeInsets.symmetric(
+                          vertical: 12,
+                        ),
+                        titleTextStyle: Theme.of(context).textTheme.bodyText1!,
+                      ),
+                      calendarBuilders: CalendarBuilders(
+                        selectedBuilder:
+                            (_, DateTime date, DateTime focusedDay) {
+                          return Center(
+                            child: Container(
+                              padding: const EdgeInsets.all(9.5),
+                              decoration: const BoxDecoration(
+                                color: AppColors.logoColor,
+                                shape: BoxShape.circle,
+                              ),
+                              child: Text(
+                                date.day.toString(),
+                                style: const TextStyle(
+                                  color: AppColors.textColor,
+                                  fontSize: 14,
+                                ),
                               ),
                             ),
-                          ),
-                        );
+                          );
+                        },
+                        todayBuilder: (_, DateTime date, DateTime focusedDay) {
+                          return Center(
+                            child: Text(
+                              date.day.toString(),
+                              style:
+                                  const TextStyle(color: AppColors.logoColor),
+                            ),
+                          );
+                        },
+                      ),
+                      firstDay: DateTime.utc(1970),
+                      lastDay: DateTime.utc(2100, 12, 31),
+                      selectedDayPredicate: (day) => isSameDay(
+                        DateFormat('d MMM yyyy').parse(cubit.state!),
+                        day,
+                      ),
+                      onDaySelected: (selected, focused) {
+                        // focusedDay.value = focused;
+                        cubit.updateDay(selected);
                       },
-                      todayBuilder: (_, DateTime date, DateTime focusedDay) {
-                        return Center(
-                          child: Text(
-                            date.day.toString(),
-                            style: const TextStyle(color: AppColors.logoColor),
-                          ),
-                        );
+                      onPageChanged: (focused) {
+                        // No need to call `setState()` here
+                        focusedDay.value = focused;
                       },
+                      startingDayOfWeek: StartingDayOfWeek.monday,
+                      focusedDay: focusedDay.value,
                     ),
-                    firstDay: DateTime.utc(1970),
-                    lastDay: DateTime.utc(2100, 12, 31),
-                    selectedDayPredicate: (day) => isSameDay(DateFormat('d MMM yyyy').parse(cubit.state!), day,),
-                    onDaySelected: (selected, focused) {
-                      // focusedDay.value = focused;
-                      cubit.updateDay(selected);
-                    },
-                    onPageChanged: (focused) {
-                      // No need to call `setState()` here
-                      focusedDay.value = focused;
-                    },
-                    startingDayOfWeek: StartingDayOfWeek.monday,
-                    focusedDay: focusedDay.value,
                   ),
-                ),),
+                ),
               ),
-              Expanded(child: CalendarBottomRow(onSuccessfulPicking: _onDatePicked),),
+              Expanded(
+                child: CalendarBottomRow(onSuccessfulPicking: _onDatePicked),
+              ),
             ],
           ),
         ),

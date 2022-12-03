@@ -9,7 +9,9 @@ class SelectedDayCubit extends Cubit<String?> {
   SelectedDayCubit() : super(DateFormat('d MMM yyyy').format(DateTime.now()));
 
   /// Set picked day here
-  void updateDay(DateTime? day) => emit(DateFormat('d MMM yyyy').format(day ?? DateTime.now()),);
+  void updateDay(DateTime? day) => emit(
+        DateFormat('d MMM yyyy').format(day ?? DateTime.now()),
+      );
 
   /// Reset picked day
   void reset() => emit(DateFormat('d MMM yyyy').format(DateTime.now()));

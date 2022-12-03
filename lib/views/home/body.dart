@@ -37,7 +37,8 @@ class _Body extends StatelessWidget {
                 child: preset0State.whenOrNull(
                   initial: () => const SizedBox(height: 50),
                   load: () => const Center(
-                      child: Center(child: CircularProgressIndicator()),),
+                    child: Center(child: CircularProgressIndicator()),
+                  ),
                   set: (selectedDate) => ResultWidget(
                     selectedDate: selectedDate,
                     variant: Variant.preset_0,
@@ -59,7 +60,8 @@ class _Body extends StatelessWidget {
                 child: preset4State.whenOrNull(
                   initial: () => const SizedBox(height: 50),
                   load: () => const Center(
-                      child: Center(child: CircularProgressIndicator()),),
+                    child: Center(child: CircularProgressIndicator()),
+                  ),
                   set: (selectedDate) => ResultWidget(
                     selectedDate: selectedDate,
                     variant: Variant.preset_4,
@@ -102,27 +104,32 @@ class _Body extends StatelessWidget {
       case Variant.preset_0:
         final state = context.read<Preset0Bloc>().state;
         if (state is Preset0SetSuccess) {
-          context.read<SelectedDayCubit>().updateDay(DateFormat('d MMM yyyy').parse(state.date),);
+          context.read<SelectedDayCubit>().updateDay(
+                DateFormat('d MMM yyyy').parse(state.date),
+              );
         }
         break;
       case Variant.preset_4:
         final state = context.read<Preset4Bloc>().state;
         if (state is Preset4SetSuccess) {
-          context.read<SelectedDayCubit>().updateDay(DateFormat('d MMM yyyy').parse(state.date),);
+          context.read<SelectedDayCubit>().updateDay(
+                DateFormat('d MMM yyyy').parse(state.date),
+              );
         }
         break;
       case Variant.preset_6:
         final state = context.read<Preset6Bloc>().state;
         if (state is Preset6SetSuccess) {
-          context.read<SelectedDayCubit>().updateDay(DateFormat('d MMM yyyy').parse(state.date),);
+          context.read<SelectedDayCubit>().updateDay(
+                DateFormat('d MMM yyyy').parse(state.date),
+              );
         }
         break;
     }
     context.read<PresetsCubit>().setPresets(variant);
     showDialog<void>(
       context: context,
-      builder: (_) => const CalendarDialog(
-      ),
+      builder: (_) => const CalendarDialog(),
       barrierDismissible: !kDebugMode,
     ).then((value) => context.read<SelectedDayCubit>().reset());
   }

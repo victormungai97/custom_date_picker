@@ -15,18 +15,17 @@ class PresetsCubit extends Cubit<List<Map<String, int>>?> {
   ];
 
   List<Map<String, int>> _presets6(String today) => <Map<String, int>>[
-    {Labels.yesterday: -1},
-    {Labels.today: 0},
-    {Labels.tomorrow: 1},
-    {Labels.saturday: _getDifferenceBtnDays(today, 'Saturday')},
-    {Labels.sunday: _getDifferenceBtnDays(today, 'Sunday')},
-    {Labels.tuesday: _getDifferenceBtnDays(today, 'Tuesday')},
-  ];
+        {Labels.yesterday: -1},
+        {Labels.today: 0},
+        {Labels.tomorrow: 1},
+        {Labels.saturday: _getDifferenceBtnDays(today, 'Saturday')},
+        {Labels.sunday: _getDifferenceBtnDays(today, 'Sunday')},
+        {Labels.tuesday: _getDifferenceBtnDays(today, 'Tuesday')},
+      ];
 
   /// Set preset options
   void setPresets(Variant variant) {
     switch (variant) {
-
       case Variant.none:
       case Variant.preset_0:
         emit(null);

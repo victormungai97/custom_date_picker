@@ -30,14 +30,13 @@ class PresetsWidget extends HookWidget {
         children: <Widget>[
           if (partitions.isNotEmpty)
             ...partitions.map(
-                  (l) => SizedBox(
+              (l) => SizedBox(
                 width: width,
                 child: Row(
                   children: (l as List).map(
-                        (el) {
+                    (el) {
                       final e = el as Map<String, int>;
-                      final selected =
-                          highlightedButton.value == e.keys.first;
+                      final selected = highlightedButton.value == e.keys.first;
                       return Expanded(
                         child: Padding(
                           padding: const EdgeInsets.all(8),
@@ -59,9 +58,10 @@ class PresetsWidget extends HookWidget {
                             ),
                             onPressed: () {
                               final interval = e.values.first;
-                              context.read<SelectedDayCubit>().updateDay(DateTime.now().add(
-                                Duration(days: interval)
-                              ),);
+                              context.read<SelectedDayCubit>().updateDay(
+                                    DateTime.now()
+                                        .add(Duration(days: interval)),
+                                  );
                               highlightedButton.value = e.keys.first;
                             },
                             child: Text(

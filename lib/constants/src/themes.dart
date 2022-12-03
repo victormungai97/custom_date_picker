@@ -20,7 +20,11 @@ class AppThemes {
     canvasColor: AppColors.canvasColor,
     brightness: Brightness.light,
     textTheme: const TextTheme(
-      bodyText1: TextStyle(color: AppColors.titleColor, fontFamily: 'Roboto', fontWeight: FontWeight.w500, fontSize: 18),
+      bodyText1: TextStyle(
+          color: AppColors.titleColor,
+          fontFamily: 'Roboto',
+          fontWeight: FontWeight.w500,
+          fontSize: 18),
       bodyText2: TextStyle(
         color: Colors.black,
         fontSize: 16,

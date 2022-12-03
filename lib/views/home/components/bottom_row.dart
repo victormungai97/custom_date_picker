@@ -10,7 +10,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 class CalendarBottomRow extends StatelessWidget {
   /// Constructor for ``[CalendarBottomRow]``
-  const CalendarBottomRow({    super.key,
+  const CalendarBottomRow({
+    super.key,
     required this.onSuccessfulPicking,
   });
 
@@ -25,9 +26,15 @@ class CalendarBottomRow extends StatelessWidget {
         Expanded(
           child: Padding(
             padding: const EdgeInsets.all(8),
-            child: BlocBuilder<SelectedDayCubit, String?>(builder: (_, String? state) {
-              return Text(state ?? Messages.selectedDateMissing, textAlign: TextAlign.center, style: const TextStyle(fontSize: 12.5),);
-            },),
+            child: BlocBuilder<SelectedDayCubit, String?>(
+              builder: (_, String? state) {
+                return Text(
+                  state ?? Messages.selectedDateMissing,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(fontSize: 12.5),
+                );
+              },
+            ),
           ),
         ),
         Expanded(
@@ -44,7 +51,10 @@ class CalendarBottomRow extends StatelessWidget {
                 foregroundColor: AppColors.logoColor,
               ),
               onPressed: Navigator.of(context).pop,
-              child: const Text(Labels.cancel, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),),
+              child: const Text(
+                Labels.cancel,
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+              ),
             ),
           ),
         ),
@@ -57,7 +67,10 @@ class CalendarBottomRow extends StatelessWidget {
                 maximumSize: const Size(73, 40),
               ),
               onPressed: () => onSuccessfulPicking(context),
-              child: const Text(Labels.save, style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),),
+              child: const Text(
+                Labels.save,
+                style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500),
+              ),
             ),
           ),
         ),
